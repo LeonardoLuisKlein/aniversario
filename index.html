@@ -1,35 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VAI LIBERAR AMANHÃ</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz aniversário, meu amor!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    @keyframes float {
+      0%   {transform: translateY(0)   scale(1); opacity: 1;}
+      100% {transform: translateY(-700px) scale(1.2); opacity: 0;}
     }
-
-    body {
-      width: 100vw;
-      height: 100vh;
-      background-color: #292929;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    p {
-      font-size: 4rem;
-      word-wrap: break-word;
-      text-align: center;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      color: white;
+    .heart {
+      position: absolute;
+      animation: float linear infinite;
+      will-change: transform, opacity;
+      pointer-events: none;
     }
   </style>
 </head>
-<body>
-  <p>LIBERA SÓ AMANHÃ</p>
+<body class="bg-gradient-to-br from-pink-500 via-rose-500 to-yellow-400 min-h-screen flex items-center justify-center overflow-hidden select-none px-4">
+  <main class="text-center text-white p-6 sm:p-8 relative z-10 max-w-[680px] w-full">
+    <img src="lelesk.jpg" alt="Nós dois" class="mx-auto mb-6 w-40 sm:w-48 md:w-56 lg:w-64 aspect-square object-cover rounded-full shadow-2xl ring-4 ring-rose-200" />
+
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold drop-shadow-lg mb-4 animate-[pulse_4s_infinite] leading-tight">
+      Feliz aniversário, meu amor!
+    </h1>
+
+    <p class="mx-auto text-base sm:text-lg md:text-2xl font-light leading-relaxed max-w-prose">
+      Sou grato por cada momento ao seu lado. Que teu dia seja repleto de amor, risos e todos os sonhos que ainda vamos realizar juntos. Te amo hoje e sempre!
+    </p>
+  </main>
+
+  <div id="hearts"></div>
+
+  <script>
+    const heartsContainer = document.getElementById('hearts');
+    function random(min, max) { return Math.random() * (max - min) + min; }
+
+    function addHeart() {
+      const heart = document.createElement('span');
+      heart.className = 'heart';
+      heart.textContent = '❤️';
+      const size = random(20, 46);
+      heart.style.fontSize = size + 'px';
+      heart.style.left = random(0, window.innerWidth - size) + 'px';
+      heart.style.animationDuration = random(6, 10) + 's';
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 11000);
+    }
+
+    setInterval(addHeart, 800);
+
+    window.addEventListener('click', () => {
+      for (let i = 0; i < 6; i++) addHeart();
+    });
+  </script>
 </body>
 </html>
